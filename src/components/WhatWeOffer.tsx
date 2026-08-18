@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, Variants } from 'framer-motion';
 import { Sparkles, ChevronUp, ChevronDown } from 'lucide-react';
 
 interface OfferCard {
@@ -100,7 +100,7 @@ const CARDS: OfferCard[] = [
   },
 ];
 
-const variants = {
+const variants: Variants = {
   enter: (direction: number) => ({
     y: direction > 0 ? 80 : -80,
     opacity: 0,
@@ -112,7 +112,6 @@ const variants = {
     scale: 1,
     transition: {
       duration: 0.35,
-      ease: 'easeOut',
     },
   },
   exit: (direction: number) => ({
@@ -121,7 +120,6 @@ const variants = {
     scale: 0.96,
     transition: {
       duration: 0.25,
-      ease: 'easeIn',
     },
   }),
 };
