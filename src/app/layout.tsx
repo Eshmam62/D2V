@@ -15,8 +15,8 @@ const lora = Lora({
 });
 
 export const metadata: Metadata = {
-  title: "Techmak | Startup Investment Program",
-  description: "Turn Your Disruptive Idea Into a Scalable Venture. Techmak is a joint venture initiative committed to discovering next-gen student innovators.",
+  title: "Dream2Venture | Startup Investment Program",
+  description: "Turn Your Disruptive Idea Into a Scalable Venture. Dream2Venture is a joint venture initiative committed to discovering next-gen student innovators.",
 };
 
 export default function RootLayout({
