@@ -138,7 +138,6 @@ export default function WhatWeOffer() {
 
   return (
     <section className="relative w-full bg-[#f8fafc] text-slate-900 font-sans py-16 sm:py-20 px-4 sm:px-6 lg:px-12 overflow-hidden select-none">
-      {/* Ambient Glows */}
       <div className="absolute top-1/4 left-1/4 w-[600px] h-[600px] bg-blue-100/50 rounded-full blur-[140px] pointer-events-none -z-10" />
       <div className="absolute bottom-10 right-10 w-[500px] h-[500px] bg-emerald-100/40 rounded-full blur-[140px] pointer-events-none -z-10" />
 
@@ -162,7 +161,6 @@ export default function WhatWeOffer() {
             We provide end-to-end support across Innovation, Investment, and Industry to help student ideas become real-world ventures.
           </p>
 
-          {/* Direct Category Indicator */}
           <div className="pt-2 flex items-center gap-2">
             {CARDS.map((card, idx) => (
               <button
@@ -185,7 +183,6 @@ export default function WhatWeOffer() {
         {/* Right Column */}
         <div className="lg:col-span-7 flex items-center justify-center lg:justify-end gap-4 sm:gap-6 w-full">
           
-          {/* Vertical Arrow Controls */}
           <div className="flex flex-col gap-3 shrink-0 z-20">
             <button
               onClick={() => paginate(-1)}
@@ -214,7 +211,6 @@ export default function WhatWeOffer() {
             </button>
           </div>
 
-          {/* Card Viewport Container */}
           <div className="relative w-full max-w-[480px] sm:max-w-[500px] h-[490px] sm:h-[510px] rounded-3xl bg-white border border-slate-200/90 shadow-[0_25px_50px_-12px_rgba(0,0,0,0.18)] overflow-hidden">
             <AnimatePresence custom="{direction}" mode="wait">
               <motion.div
@@ -226,7 +222,6 @@ export default function WhatWeOffer() {
                 exit="exit"
                 className="w-full h-full bg-white flex flex-col justify-between select-none"
               >
-                {/* Top Content */}
                 <div className="p-6 sm:p-7 relative z-10 flex flex-col justify-between bg-white">
                   <div className="flex items-center justify-between pb-3 border-b border-slate-100">
                     <span
@@ -256,7 +251,6 @@ export default function WhatWeOffer() {
                   </ul>
                 </div>
 
-                {/* Bottom Image Banner */}
                 <div className="relative w-full h-[180px] sm:h-[200px] overflow-hidden bg-slate-50 border-t border-slate-100">
                   <div className="absolute inset-0 bg-gradient-to-t from-transparent via-white/10 to-white/80 z-10" />
                   <img
@@ -266,7 +260,6 @@ export default function WhatWeOffer() {
                   />
                 </div>
 
-                {/* Bottom Accent Color Strip */}
                 <div className="w-full h-2 shrink-0" style={{ backgroundColor: currentCard.color }} />
               </motion.div>
             </AnimatePresence>
