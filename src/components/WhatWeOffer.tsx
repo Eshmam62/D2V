@@ -112,7 +112,7 @@ const variants = {
     scale: 1,
     transition: {
       duration: 0.35,
-      ease: [0.22, 1, 0.36, 1] as const,
+      ease: 'easeOut',
     },
   },
   exit: (direction: number) => ({
@@ -121,7 +121,7 @@ const variants = {
     scale: 0.96,
     transition: {
       duration: 0.25,
-      ease: 'easeIn' as const,
+      ease: 'easeIn',
     },
   }),
 };
@@ -146,7 +146,7 @@ export default function WhatWeOffer() {
 
       <div className="max-w-7xl w-full mx-auto grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
         
-        {/* Left Column: Heading & Dots */}
+        {/* Left Column */}
         <div className="lg:col-span-5 flex flex-col items-start space-y-6">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-blue-200 bg-blue-50/90 text-blue-700 text-xs sm:text-sm font-semibold tracking-wider uppercase shadow-sm">
             <Sparkles className="w-3.5 h-3.5 text-blue-600"/>
@@ -184,7 +184,7 @@ export default function WhatWeOffer() {
           </div>
         </div>
 
-        {/* Right Column: Card Deck + Vertical Arrow Controls */}
+        {/* Right Column */}
         <div className="lg:col-span-7 flex items-center justify-center lg:justify-end gap-4 sm:gap-6 w-full">
           
           {/* Vertical Arrow Controls */}
@@ -218,7 +218,7 @@ export default function WhatWeOffer() {
 
           {/* Card Viewport Container */}
           <div className="relative w-full max-w-[480px] sm:max-w-[500px] h-[490px] sm:h-[510px] rounded-3xl bg-white border border-slate-200/90 shadow-[0_25px_50px_-12px_rgba(0,0,0,0.18)] overflow-hidden">
-            <AnimatePresence custom={direction} mode="wait">
+            <AnimatePresence custom="{direction}" mode="wait">
               <motion.div
                 key={currentCard.id}
                 custom={direction}
