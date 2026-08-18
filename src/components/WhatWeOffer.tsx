@@ -167,8 +167,8 @@ export default function WhatWeOffer() {
                 key={card.id}
                 onClick={() => setPage([idx, idx > activeIndex ? 1 : -1])}
                 className={`h-2.5 rounded-full transition-all duration-300 ${idx === activeIndex
-                    ? 'w-9 bg-blue-600 shadow-sm'
-                    : 'w-2.5 bg-slate-300 hover:bg-slate-400'
+                  ? 'w-9 bg-blue-600 shadow-sm'
+                  : 'w-2.5 bg-slate-300 hover:bg-slate-400'
                   }`}
                 aria-label={`Go to ${card.title}`}
               />
@@ -188,8 +188,8 @@ export default function WhatWeOffer() {
               disabled={activeIndex === 0}
               aria-label="Previous Card"
               className={`w-11 h-11 sm:w-12 sm:h-12 rounded-2xl flex items-center justify-center border transition-all duration-200 shadow-md ${activeIndex === 0
-                  ? 'bg-slate-100 text-slate-300 border-slate-200 cursor-not-allowed'
-                  : 'bg-white text-slate-800 border-slate-200 hover:bg-blue-600 hover:text-white hover:border-blue-600'
+                ? 'bg-slate-100 text-slate-300 border-slate-200 cursor-not-allowed'
+                : 'bg-white text-slate-800 border-slate-200 hover:bg-blue-600 hover:text-white hover:border-blue-600'
                 }`}
             >
               <ChevronUp className="w-6 h-6 stroke-[2.5]" />
@@ -200,8 +200,8 @@ export default function WhatWeOffer() {
               disabled={activeIndex === CARDS.length - 1}
               aria-label="Next Card"
               className={`w-11 h-11 sm:w-12 sm:h-12 rounded-2xl flex items-center justify-center border transition-all duration-200 shadow-md ${activeIndex === CARDS.length - 1
-                  ? 'bg-slate-100 text-slate-300 border-slate-200 cursor-not-allowed'
-                  : 'bg-white text-slate-800 border-slate-200 hover:bg-blue-600 hover:text-white hover:border-blue-600'
+                ? 'bg-slate-100 text-slate-300 border-slate-200 cursor-not-allowed'
+                : 'bg-white text-slate-800 border-slate-200 hover:bg-blue-600 hover:text-white hover:border-blue-600'
                 }`}
             >
               <ChevronDown className="w-6 h-6 stroke-[2.5]" />
