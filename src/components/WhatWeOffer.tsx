@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { motion, AnimatePresence, Variants } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Sparkles, ChevronUp, ChevronDown } from 'lucide-react';
 
 interface OfferCard {
@@ -100,7 +100,7 @@ const CARDS: OfferCard[] = [
   },
 ];
 
-const variants: Variants = {
+const variants = {
   enter: (direction: number) => ({
     y: direction > 0 ? 80 : -80,
     opacity: 0,
@@ -142,11 +142,11 @@ export default function WhatWeOffer() {
       <div className="absolute bottom-10 right-10 w-[500px] h-[500px] bg-emerald-100/40 rounded-full blur-[140px] pointer-events-none -z-10" />
 
       <div className="max-w-7xl w-full mx-auto grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
-        
+
         {/* Left Column */}
         <div className="lg:col-span-5 flex flex-col items-start space-y-6">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-blue-200 bg-blue-50/90 text-blue-700 text-xs sm:text-sm font-semibold tracking-wider uppercase shadow-sm">
-            <Sparkles className="w-3.5 h-3.5 text-blue-600"/>
+            <Sparkles className="w-3.5 h-3.5 text-blue-600" />
             <span>WHAT WE OFFER</span>
           </div>
 
@@ -166,11 +166,10 @@ export default function WhatWeOffer() {
               <button
                 key={card.id}
                 onClick={() => setPage([idx, idx > activeIndex ? 1 : -1])}
-                className={`h-2.5 rounded-full transition-all duration-300 ${
-                  idx === activeIndex
+                className={`h-2.5 rounded-full transition-all duration-300 ${idx === activeIndex
                     ? 'w-9 bg-blue-600 shadow-sm'
                     : 'w-2.5 bg-slate-300 hover:bg-slate-400'
-                }`}
+                  }`}
                 aria-label={`Go to ${card.title}`}
               />
             ))}
@@ -182,32 +181,30 @@ export default function WhatWeOffer() {
 
         {/* Right Column */}
         <div className="lg:col-span-7 flex items-center justify-center lg:justify-end gap-4 sm:gap-6 w-full">
-          
+
           <div className="flex flex-col gap-3 shrink-0 z-20">
             <button
               onClick={() => paginate(-1)}
               disabled={activeIndex === 0}
               aria-label="Previous Card"
-              className={`w-11 h-11 sm:w-12 sm:h-12 rounded-2xl flex items-center justify-center border transition-all duration-200 shadow-md ${
-                activeIndex === 0
+              className={`w-11 h-11 sm:w-12 sm:h-12 rounded-2xl flex items-center justify-center border transition-all duration-200 shadow-md ${activeIndex === 0
                   ? 'bg-slate-100 text-slate-300 border-slate-200 cursor-not-allowed'
                   : 'bg-white text-slate-800 border-slate-200 hover:bg-blue-600 hover:text-white hover:border-blue-600'
-              }`}
+                }`}
             >
-              <ChevronUp className="w-6 h-6 stroke-[2.5]"/>
+              <ChevronUp className="w-6 h-6 stroke-[2.5]" />
             </button>
 
             <button
               onClick={() => paginate(1)}
               disabled={activeIndex === CARDS.length - 1}
               aria-label="Next Card"
-              className={`w-11 h-11 sm:w-12 sm:h-12 rounded-2xl flex items-center justify-center border transition-all duration-200 shadow-md ${
-                activeIndex === CARDS.length - 1
+              className={`w-11 h-11 sm:w-12 sm:h-12 rounded-2xl flex items-center justify-center border transition-all duration-200 shadow-md ${activeIndex === CARDS.length - 1
                   ? 'bg-slate-100 text-slate-300 border-slate-200 cursor-not-allowed'
                   : 'bg-white text-slate-800 border-slate-200 hover:bg-blue-600 hover:text-white hover:border-blue-600'
-              }`}
+                }`}
             >
-              <ChevronDown className="w-6 h-6 stroke-[2.5]"/>
+              <ChevronDown className="w-6 h-6 stroke-[2.5]" />
             </button>
           </div>
 
