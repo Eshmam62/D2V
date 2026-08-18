@@ -112,7 +112,7 @@ const variants = {
     scale: 1,
     transition: {
       duration: 0.35,
-      ease: [0.22, 1, 0.36, 1],
+      ease: [0.22, 1, 0.36, 1] as const,
     },
   },
   exit: (direction: number) => ({
@@ -121,7 +121,7 @@ const variants = {
     scale: 0.96,
     transition: {
       duration: 0.25,
-      ease: 'easeIn',
+      ease: 'easeIn' as const,
     },
   }),
 };

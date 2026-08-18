@@ -44,7 +44,7 @@ export default function HeroSection() {
 
         {/* LEFT COLUMN */}
         <motion.div
-          className="order-2 lg:order-1 lg:col-span-7 text-left space-y-1 md:space-y-2 pt-0"
+          className="order-2 lg:order-1 lg:col-span-7 text-left space-y-1 md:space-y-2 pt-12 sm:pt-16 lg:pt-20"
           variants={containerVariants}
           initial="hidden"
           animate="visible"
@@ -143,51 +143,6 @@ export default function HeroSection() {
             </div>
           </div>
         </div>
-      </div>
-
-      {/* Bottom Layout block for Features & Indicator */}
-      <div className="w-full flex flex-col items-center justify-end z-20 mt-auto">
-
-        {/* Bottom Horizontal Feature Bar (4 Columns) */}
-        <div className="w-full max-w-6xl mx-auto bg-[#111C3A]/80 backdrop-blur-md rounded-2xl border border-white/10 p-4 grid grid-cols-2 md:grid-cols-4 gap-4 mb-4 md:mb-6 shadow-xl">
-          <div className="flex flex-col gap-1.5">
-            <div className="bg-indigo-950/80 border border-indigo-800/60 text-indigo-300 p-1.5 rounded-lg inline-flex items-center justify-center w-7 h-7 md:w-9 md:h-9">
-              🌱
-            </div>
-            <div>
-              <div className="text-white font-semibold text-[11px] md:text-sm">Seed Funding</div>
-              <div className="text-slate-400 text-[9px] md:text-[11px]">Up to $100K for bold ideas</div>
-            </div>
-          </div>
-          <div className="flex flex-col gap-1.5">
-            <div className="bg-indigo-950/80 border border-indigo-800/60 text-indigo-300 p-1.5 rounded-lg inline-flex items-center justify-center w-7 h-7 md:w-9 md:h-9">
-              👥
-            </div>
-            <div>
-              <div className="text-white font-semibold text-[11px] md:text-sm">Expert Guidance</div>
-              <div className="text-slate-400 text-[9px] md:text-[11px]">Mentorship from industry leaders</div>
-            </div>
-          </div>
-          <div className="flex flex-col gap-1.5">
-            <div className="bg-indigo-950/80 border border-indigo-800/60 text-indigo-300 p-1.5 rounded-lg inline-flex items-center justify-center w-7 h-7 md:w-9 md:h-9">
-              ⚙️
-            </div>
-            <div>
-              <div className="text-white font-semibold text-[11px] md:text-sm">Tech Ecosystem</div>
-              <div className="text-slate-400 text-[9px] md:text-[11px]">Resources, tools & network access</div>
-            </div>
-          </div>
-          <div className="flex flex-col gap-1.5">
-            <div className="bg-indigo-950/80 border border-indigo-800/60 text-indigo-300 p-1.5 rounded-lg inline-flex items-center justify-center w-7 h-7 md:w-9 md:h-9">
-              🌍
-            </div>
-            <div>
-              <div className="text-white font-semibold text-[11px] md:text-sm">Global Impact</div>
-              <div className="text-slate-400 text-[9px] md:text-[11px]">Building solutions for a better tomorrow</div>
-            </div>
-          </div>
-        </div>
-
       </div>
 
     </section>
