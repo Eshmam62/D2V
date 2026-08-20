@@ -28,7 +28,7 @@ body {
 }
 
 html, body {
-  overflow-x: hidden;
+  overflow-x: clip;
   scroll-behavior: smooth;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -63,6 +63,47 @@ html, body {
   }
   .animation-pause {
     animation-play-state: paused;
+  }
+  
+  /* Premium Visual System */
+  .ambient-glow {
+    @apply absolute rounded-full blur-[100px] opacity-20 pointer-events-none mix-blend-screen;
+    will-change: transform;
+  }
+  
+  .glow-blue {
+    @apply bg-blue-500/40;
+  }
+  
+  .glow-purple {
+    @apply bg-purple-500/30;
+  }
+  
+  .glow-cyan {
+    @apply bg-cyan-400/40;
+  }
+  
+  .soft-bloom {
+    @apply shadow-[0_0_40px_rgba(59,130,246,0.15)] border border-white/40;
+  }
+  
+  .glass-surface {
+    @apply bg-white/80 backdrop-blur-xl border border-white/60 shadow-[0_8px_30px_rgb(0,0,0,0.04)];
+  }
+  
+  .premium-card {
+    @apply bg-white/90 backdrop-blur-md border border-slate-100/80 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] transition-all duration-500 hover:shadow-[0_12px_40px_-10px_rgba(59,130,246,0.15)] hover:-translate-y-1;
+  }
+  
+  .cursor-light {
+    @apply fixed w-[400px] h-[400px] rounded-full blur-[120px] pointer-events-none z-50 opacity-0 transition-opacity duration-300 mix-blend-screen;
+    background: radial-gradient(circle, rgba(99,102,241,0.15) 0%, rgba(99,102,241,0) 70%);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .premium-card:hover {
+      transform: none;
+    }
   }
 }
 

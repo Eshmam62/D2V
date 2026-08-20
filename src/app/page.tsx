@@ -1,31 +1,72 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import Header from "@/components/Header";
 import HeroSection from "@/components/HeroSection";
+import TrustedPartners from "@/components/TrustedPartners";
 import HowItWorks from "@/components/HowItWorks";
 import FocusAreas from "@/components/FocusAreas";
-import WhoCanApply from "@/components/WhoCanApply";
 import WhatWeOffer from "@/components/WhatWeOffer";
 import Footer from "@/components/Footer";
 import FloatingRegistration from "@/components/FloatingRegistration";
-import Link from "next/link";
 
 export default function Home() {
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setIsClient(true);
+
+    // Check if user prefers reduced motion
+    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+    if (mediaQuery.matches) return;
+
+    const updateMousePosition = (ev: MouseEvent) => {
+      setMousePosition({ x: ev.clientX, y: ev.clientY });
+    };
+
+    window.addEventListener("mousemove", updateMousePosition);
+    return () => window.removeEventListener("mousemove", updateMousePosition);
+  }, []);
+
   return (
-    <main className="min-h-screen w-full text-slate-900 relative overflow-x-hidden flex flex-col">
-      {/* Global Continuous Background Lighting */}
-      <div className="fixed left-[-10%] top-[10%] w-[600px] h-[600px] bg-sky-300/50 rounded-full blur-3xl -z-10 pointer-events-none" />
-      <div className="fixed right-[-10%] top-[40%] w-[600px] h-[600px] bg-purple-300/50 rounded-full blur-3xl -z-10 pointer-events-none" />
-      <div className="fixed left-[20%] bottom-[10%] w-[500px] h-[500px] bg-indigo-200/40 rounded-full blur-3xl -z-10 pointer-events-none" />
+    <main className="min-h-screen w-full text-slate-900 relative flex flex-col bg-[#fafcff]">
+      {/* Dynamic Cursor Light (Only visible on desktop/when moving) */}
+      {isClient && (
+        <div
+          className="cursor-light hidden md:block"
+          style={{
+            transform: `translate(${mousePosition.x - 200}px, ${mousePosition.y - 200}px)`,
+            opacity: mousePosition.x > 0 ? 0.6 : 0
+          }}
+        />
+      )}
+
+      {/* Global Ambient Atmosphere (Layer 2) */}
+      <div className="fixed inset-0 overflow-hidden pointer-events-none -z-10">
+        <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] rounded-full bg-blue-400/5 blur-[120px]" />
+        <div className="absolute top-[30%] right-[-10%] w-[60%] h-[60%] rounded-full bg-indigo-400/5 blur-[150px]" />
+        <div className="absolute bottom-[-10%] left-[20%] w-[50%] h-[50%] rounded-full bg-cyan-400/5 blur-[120px]" />
+      </div>
 
       <Header />
-      <HeroSection />
-      <div className="bg-white min-h-screen w-full">
-        <HowItWorks />
-        <WhatWeOffer />
-        <FocusAreas />
-        <WhoCanApply />
+
+      {/* Content wrapper with z-index to stay above background but below cursor */}
+      <div className="relative z-10 w-full">
+        <HeroSection />
+        <TrustedPartners />
+
+        <div className="relative w-full">
+          {/* Subtle underlay for content sections */}
+          <div className="absolute inset-0 bg-white/60 backdrop-blur-[2px] -z-10" />
+
+          <HowItWorks />
+          <WhatWeOffer />
+          <FocusAreas />
+        </div>
       </div>
+
       <Footer />
 
       {/* Floating Registration Widget */}

@@ -62,23 +62,7 @@ export default function ApplicationForm() {
   };
 
   return (
-    <section id="apply-section" className="w-full flex flex-col items-center pt-32 md:pt-40 pb-16 px-4 md:px-10 bg-transparent relative z-10">
-
-      {/* Centered Headers */}
-      <div className="flex flex-col items-center text-center max-w-2xl mx-auto mb-10 w-full">
-        <h2 className="text-3xl md:text-4xl lg:text-5xl font-poppins font-extrabold text-slate-900 tracking-tight leading-tight flex items-center gap-3">
-          Pitch Your Idea 🚀
-        </h2>
-        <p className="text-sm md:text-base text-slate-600 font-lora mt-3">
-          Share your idea with us and let's turn it into real impact.
-        </p>
-      </div>
-
-      {/* Centered Application Form */}
-      <div className="w-full max-w-[850px] mx-auto">
-        <div className="bg-white rounded-3xl p-6 md:p-10 border border-slate-200/90 shadow-2xl shadow-blue-900/10 w-full h-auto overflow-visible flex flex-col">
-
-          <form onSubmit={handleSubmit} className="flex flex-col w-full relative z-10">
+    <form onSubmit={handleSubmit} className="flex flex-col w-full relative z-10">
 
             {/* Form Fields Area */}
             <div className="w-full space-y-5 pb-4">
@@ -182,9 +166,6 @@ export default function ApplicationForm() {
                 <span>Your information will be kept confidential and used only to evaluate your idea.</span>
               </div>
             </div>
-          </form>
-        </div>
-      </div>
-    </section>
+    </form>
   );
 }

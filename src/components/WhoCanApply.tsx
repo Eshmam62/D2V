@@ -43,11 +43,14 @@ export default function WhoCanApply() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ delay: idx * 0.1 }}
-              className="flex items-start gap-3"
+              className="group flex items-start gap-3 p-3 rounded-xl transition-all duration-300 hover:bg-white hover:shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] hover:-translate-y-1 border border-transparent hover:border-slate-100 relative overflow-hidden"
             >
-              <CheckCircle2 className="text-purple-600 mt-0.5 shrink-0" size={20} />
-              <div>
-                <h4 className="font-bold text-slate-900 leading-tight">{item.title}</h4>
+              {/* Subtle hover background glow */}
+              <div className="absolute inset-0 bg-gradient-to-r from-purple-50/0 to-purple-50/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+              
+              <CheckCircle2 className="text-purple-600 mt-0.5 shrink-0 group-hover:drop-shadow-[0_0_8px_rgba(168,85,247,0.5)] transition-all duration-300 relative z-10" size={20} />
+              <div className="relative z-10">
+                <h4 className="font-bold text-slate-900 leading-tight transition-colors duration-300 group-hover:text-purple-700">{item.title}</h4>
                 <p className="text-slate-600 text-sm">{item.desc}</p>
               </div>
             </motion.div>
@@ -74,6 +77,10 @@ export default function WhoCanApply() {
         
         <div className="relative w-full min-h-[500px] md:min-h-[600px] flex items-center justify-center">
         
+        {/* Ambient Glows */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] bg-purple-500/10 rounded-full blur-[100px] pointer-events-none -z-10" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-blue-400/5 rounded-full blur-[120px] pointer-events-none -z-10" />
+
         {/* Orbital Rings */}
         <div className="absolute w-[360px] md:w-[460px] h-[360px] md:h-[460px] border border-slate-200/60 rounded-full" />
         <div className="absolute w-[460px] md:w-[560px] h-[460px] md:h-[560px] border border-slate-200/60 rounded-full" />
@@ -98,7 +105,7 @@ export default function WhoCanApply() {
                 }
               }}
               style={{ top: tag.top, left: tag.left, right: tag.right }}
-              className="absolute bg-white/90 backdrop-blur-sm border border-slate-200/60 shadow-sm px-2 py-0.5 sm:px-3 sm:py-1 md:px-4 md:py-1.5 rounded-full text-[9px] sm:text-xs md:text-sm font-semibold text-slate-700 pointer-events-auto hover:border-purple-300 hover:text-purple-700 hover:scale-110 hover:shadow-md transition-transform duration-200 cursor-pointer whitespace-nowrap"
+              className="absolute bg-white/90 backdrop-blur-sm border border-slate-200/60 shadow-sm px-2 py-0.5 sm:px-3 sm:py-1 md:px-4 md:py-1.5 rounded-full text-[9px] sm:text-xs md:text-sm font-semibold text-slate-700 pointer-events-auto hover:border-purple-300 hover:text-purple-700 hover:-translate-y-1 hover:shadow-[0_4px_12px_rgba(168,85,247,0.3)] hover:brightness-105 transition-all duration-300 cursor-pointer whitespace-nowrap"
             >
               {tag.label}
             </motion.div>
