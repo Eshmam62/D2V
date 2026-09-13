@@ -1,17 +1,12 @@
 "use client";
 import React from "react";
 import { motion } from "framer-motion";
+import ScrollReveal from "./ScrollReveal";
 
 export default function AboutMission() {
   return (
     <section className="px-6 relative z-10 bg-transparent">
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-100px" }}
-        transition={{ duration: 0.7 }}
-        className="max-w-3xl mx-auto px-6 py-16 md:py-24 bg-white rounded-2xl my-12 shadow-sm border border-slate-100"
-      >
+      <ScrollReveal className="max-w-3xl mx-auto px-6 py-16 md:py-24 bg-white rounded-2xl my-12 shadow-sm border border-slate-100">
         <h3 className="font-poppins text-[12px] tracking-[0.25em] font-semibold uppercase text-slate-900 mb-8 text-center">
           OUR MISSION & PURPOSE
         </h3>
@@ -28,7 +23,7 @@ export default function AboutMission() {
             We are an elite network of tech veterans, international investors, and industry mentors operating across Bangladesh and global innovation hubs. We don&apos;t just write seed checks—we partner with you.
           </p>
         </div>
-      </motion.div>
+      </ScrollReveal>
     </section>
   );
 }

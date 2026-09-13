@@ -1,8 +1,15 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Rocket, Lightbulb, PenTool, Briefcase, UploadCloud, ArrowRight, Lock } from "lucide-react";
+
+const ALLOWED_TYPES = [
+  'application/pdf',
+  'application/vnd.ms-powerpoint',
+  'application/vnd.openxmlformats-officedocument.presentationml.presentation',
+];
+const ALLOWED_EXTENSIONS = ['.pdf', '.ppt', '.pptx'];
 
 export default function ApplicationForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -22,17 +29,46 @@ export default function ApplicationForm() {
     file: null as File | null,
   });
 
-  const categories = ["AI & Technology", "Education", "Healthcare", "FinTech", "AgriTech", "Cybersecurity", "Environment", "Other"];
+  const [fileError, setFileError] = useState('');
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
+  const categories = ["AI & Technology", "AgriTech", "Cybersecurity", "Others"];
   const stages = [
     { label: "Idea", icon: <Lightbulb className="w-4 h-4 mb-1" /> },
     { label: "Prototype", icon: <PenTool className="w-4 h-4 mb-1" /> },
-    { label: "MVP", icon: <Rocket className="w-4 h-4 mb-1" /> },
     { label: "Existing Business", icon: <Briefcase className="w-4 h-4 mb-1" /> }
   ];
   const supportOptions = ["Funding", "Mentorship", "Technology", "Marketing"];
 
+  const handleFileSelect = (selectedFile: File | null) => {
+    if (!selectedFile) return;
+
+    const fileExt = '.' + selectedFile.name.split('.').pop()?.toLowerCase();
+    const isValidType =
+      ALLOWED_TYPES.includes(selectedFile.type) ||
+      ALLOWED_EXTENSIONS.includes(fileExt);
+
+    if (!isValidType) {
+      alert('Invalid file format. Please upload a PDF or PowerPoint (.ppt, .pptx) presentation.');
+      setFileError('Invalid format');
+      // Reset input value to allow selecting the same file again if user fixes it
+      if (fileInputRef.current) fileInputRef.current.value = '';
+      return;
+    }
+
+    setFormData({ ...formData, file: selectedFile });
+    setFileError('');
+  };
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+
+    if (!formData.file) {
+      alert('Please upload your pitch deck (PDF or PPT/PPTX) before submitting.');
+      setFileError('Required');
+      return;
+    }
+
     setIsSubmitting(true);
 
     // Simulate API call
@@ -63,6 +99,17 @@ export default function ApplicationForm() {
 
   return (
     <form onSubmit={handleSubmit} className="flex flex-col w-full relative z-10">
+      
+      {/* Registration Form Top Header Logo */}
+      <div className="flex justify-center items-center mb-6">
+        <div className="inline-flex items-center justify-center px-6 py-2.5 rounded-full bg-slate-100 border border-slate-300/90 shadow-sm hover:shadow-md transition-all duration-300 select-none">
+          <img
+            src="/footerlogo.png"
+            alt="Dream 2 Venture"
+            className="h-10 sm:h-12 w-auto object-contain block"
+          />
+        </div>
+      </div>
 
             {/* Form Fields Area */}
             <div className="w-full space-y-5 pb-4">
@@ -70,7 +117,7 @@ export default function ApplicationForm() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="space-y-1.5">
                   <label className="text-[14px] font-semibold text-slate-700 block">Full Name</label>
-                  <input type="text" required value={formData.fullName} onChange={e => setFormData({ ...formData, fullName: e.target.value })} placeholder="Jane Doe" className="w-full bg-slate-50 border border-slate-200 text-[15px] rounded-lg px-3.5 py-3.5 focus:ring-2 focus:ring-blue-100 focus:border-blue-500 outline-none transition-all placeholder:text-slate-400" />
+                  <input type="text" required value={formData.fullName} onChange={e => setFormData({ ...formData, fullName: e.target.value })} placeholder="Tanvir Ahmed" className="w-full bg-slate-50 border border-slate-200 text-[15px] rounded-lg px-3.5 py-3.5 focus:ring-2 focus:ring-blue-100 focus:border-blue-500 outline-none transition-all placeholder:text-slate-400" />
                 </div>
                 <div className="space-y-1.5">
                   <label className="text-[14px] font-semibold text-slate-700 block">Email Address</label>
@@ -81,7 +128,7 @@ export default function ApplicationForm() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="space-y-1.5">
                   <label className="text-[14px] font-semibold text-slate-700 block">University / Institution</label>
-                  <input type="text" required value={formData.university} onChange={e => setFormData({ ...formData, university: e.target.value })} placeholder="e.g. Stanford University" className="w-full bg-slate-50 border border-slate-200 text-[15px] rounded-lg px-3.5 py-3.5 focus:ring-2 focus:ring-blue-100 focus:border-blue-500 outline-none transition-all placeholder:text-slate-400" />
+                  <input type="text" required value={formData.university} onChange={e => setFormData({ ...formData, university: e.target.value })} placeholder="Enter your university or institution name" className="w-full bg-slate-50 border border-slate-200 text-[15px] rounded-lg px-3.5 py-3.5 focus:ring-2 focus:ring-blue-100 focus:border-blue-500 outline-none transition-all placeholder:text-slate-400" />
                 </div>
                 <div className="space-y-1.5">
                   <label className="text-[14px] font-semibold text-slate-700 block">Idea / Startup Name</label>
@@ -110,7 +157,7 @@ export default function ApplicationForm() {
 
               <div className="space-y-2">
                 <label className="text-[14px] font-semibold text-slate-700 block">Current Stage</label>
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 mt-2">
                   {stages.map(s => (
                     <button type="button" key={s.label} onClick={() => setFormData({ ...formData, stage: s.label })} className={`flex flex-col items-center justify-center p-3 rounded-xl border transition-colors gap-1.5 ${formData.stage === s.label ? 'bg-blue-50 border-blue-600 text-blue-700' : 'bg-white border-slate-200 text-slate-600 hover:bg-slate-50'}`}>
                       {s.icon}
@@ -121,12 +168,37 @@ export default function ApplicationForm() {
               </div>
 
               <div className="space-y-2 pb-4">
-                <label className="text-[14px] font-semibold text-slate-700 block">Upload Pitch Deck / Supporting File <span className="text-slate-400 font-normal">(Optional)</span></label>
-                <div className="border-2 border-dashed border-slate-300 rounded-xl bg-slate-50 hover:bg-slate-100 transition-colors p-8 flex flex-col items-center justify-center cursor-pointer text-center relative group">
-                  <input type="file" className="absolute inset-0 opacity-0 cursor-pointer" />
-                  <UploadCloud className="w-6 h-6 text-slate-400 mb-2 group-hover:text-blue-500 transition-colors" />
-                  <span className="text-[15px] font-medium text-blue-600">Upload a file <span className="text-slate-500">or drag and drop</span></span>
-                  <span className="text-[13px] text-slate-400 mt-1">PDF, PPTX, DOCX up to 100MB</span>
+                <label className="block text-[14px] font-semibold text-slate-800">
+                  Upload Pitch Deck / Supporting File <span className="text-red-500">*</span>
+                </label>
+                <div 
+                  onDragOver={(e) => e.preventDefault()}
+                  onDrop={(e) => {
+                    e.preventDefault();
+                    if (e.dataTransfer.files?.[0]) {
+                      handleFileSelect(e.dataTransfer.files[0]);
+                    }
+                  }}
+                  onClick={() => fileInputRef.current?.click()}
+                  className={`border-2 border-dashed ${fileError ? 'border-red-400 bg-red-50/20' : 'border-slate-300 hover:border-blue-500'} rounded-2xl bg-slate-50/50 hover:bg-blue-50/30 transition-all p-8 flex flex-col items-center justify-center cursor-pointer text-center relative group`}
+                >
+                  <input 
+                    ref={fileInputRef}
+                    type="file" 
+                    required
+                    accept=".pdf,.ppt,.pptx,application/pdf,application/vnd.ms-powerpoint,application/vnd.openxmlformats-officedocument.presentationml.presentation"
+                    className="absolute inset-0 opacity-0 cursor-pointer" 
+                    onChange={(e) => handleFileSelect(e.target.files?.[0] || null)}
+                  />
+                  <UploadCloud className="w-8 h-8 text-slate-400 mb-2 transition-colors" />
+                  <p className="text-[15px] text-slate-700 font-medium">
+                    {formData.file ? (
+                      <span className="text-emerald-600 font-semibold">{formData.file.name}</span>
+                    ) : (
+                      <><span className="text-blue-600 font-semibold group-hover:underline">Upload a file</span> or drag and drop</>
+                    )}
+                  </p>
+                  <p className="text-[13px] text-slate-500 mt-1">PDF, PPT, PPTX only (Required)</p>
                 </div>
               </div>
             </div>

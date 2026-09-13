@@ -2,6 +2,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { CheckCircle2, UserCheck, ArrowRight, Zap } from "lucide-react";
+import ScrollReveal from "./ScrollReveal";
 
 export default function WhoCanApply() {
   const criteria = [
@@ -30,19 +31,18 @@ export default function WhoCanApply() {
       
       {/* Left Column */}
       <div className="w-full lg:w-1/2 space-y-6 lg:pr-4">
+        <ScrollReveal>
         <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-slate-100 border border-slate-200/80 text-slate-900 font-semibold text-xs md:text-sm tracking-wide uppercase shadow-sm">
           <UserCheck className="w-4 h-4 text-slate-900"/>
           <span>WHO CAN APPLY?</span>
         </div>
+        </ScrollReveal>
         
         <div className="space-y-4">
           {criteria.map((item, idx) => (
-            <motion.div 
+            <ScrollReveal 
               key={idx}
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: idx * 0.1 }}
+              delay={idx * 0.1}
               className="group flex items-start gap-3 p-3 rounded-xl transition-all duration-300 hover:bg-white hover:shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] hover:-translate-y-1 border border-transparent hover:border-slate-100 relative overflow-hidden"
             >
               {/* Subtle hover background glow */}
@@ -53,14 +53,11 @@ export default function WhoCanApply() {
                 <h4 className="font-bold text-slate-900 leading-tight transition-colors duration-300 group-hover:text-purple-700">{item.title}</h4>
                 <p className="text-slate-600 text-sm">{item.desc}</p>
               </div>
-            </motion.div>
+            </ScrollReveal>
           ))}
         </div>
 
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+        <ScrollReveal
           className="flex items-center gap-4 p-5 rounded-2xl bg-gradient-to-r from-violet-50/80 via-indigo-50/60 to-purple-50/80 border border-indigo-200/80 border-l-4 border-l-indigo-600 shadow-sm shadow-indigo-500/5 backdrop-blur-sm transition-all duration-300 hover:shadow-md hover:shadow-indigo-500/10"
         >
           <div className="p-2.5 rounded-xl bg-indigo-100/80 text-indigo-600 flex-shrink-0 shadow-inner">
@@ -69,7 +66,7 @@ export default function WhoCanApply() {
           <p className="text-slate-700 font-medium text-sm md:text-base leading-relaxed">
             No matter what you study, if you have an idea worth building — <span className="font-bold text-indigo-600">you can apply.</span>
           </p>
-        </motion.div>
+        </ScrollReveal>
       </div>
 
       {/* Right Column */}

@@ -19,14 +19,20 @@ export const metadata: Metadata = {
   description: "Turn Your Disruptive Idea Into a Scalable Venture. Dream2Venture is a joint venture initiative committed to discovering next-gen student innovators.",
 };
 
+import SmoothScrollProvider from "@/components/SmoothScrollProvider";
+
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${poppins.variable} ${lora.variable} h-full antialiased overflow-x-clip`}>
-      <body className="min-h-full flex flex-col bg-transparent text-slate-900 font-lora selection:bg-[#a95ef8] selection:text-white overflow-x-clip">{children}</body>
+    <html lang="en" className={`${poppins.variable} ${lora.variable} antialiased overflow-x-clip`}>
+      <body className="min-h-screen flex flex-col bg-transparent text-slate-900 font-lora selection:bg-[#a95ef8] selection:text-white overflow-x-clip">
+        <SmoothScrollProvider>
+          {children}
+        </SmoothScrollProvider>
+      </body>
     </html>
   );
 }

@@ -50,17 +50,18 @@ export default function Home() {
         <div className="absolute bottom-[-10%] left-[20%] w-[50%] h-[50%] rounded-full bg-cyan-400/5 blur-[120px]" />
       </div>
 
-      <Header />
+
 
       {/* Content wrapper with z-index to stay above background but below cursor */}
       <div className="relative z-10 w-full">
+        <Header />
         <HeroSection />
-        <TrustedPartners />
 
-        <div className="relative w-full">
+        <div className="relative z-20 w-full">
           {/* Subtle underlay for content sections */}
           <div className="absolute inset-0 bg-white/60 backdrop-blur-[2px] -z-10" />
 
+          <TrustedPartners />
           <HowItWorks />
           <WhatWeOffer />
           <FocusAreas />

@@ -1,83 +1,168 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
+import ScrollReveal from './ScrollReveal';
+
+interface StepItem {
+  id: string;
+  stepLabel: string;
+  title: string;
+  description: string;
+  image: string;
+  tiltClass: string;
+}
+
+const stepsData: StepItem[] = [
+  {
+    id: '01',
+    stepLabel: 'Step 01',
+    title: 'Apply',
+    description:
+      'Submit your idea through our simple application form. Tell us about your vision, target audience, and goals. We review every application personally.',
+    image:
+      '/Apply.jpeg',
+    tiltClass: 'lg:rotate-[-5deg] lg:translate-y-2 hover:rotate-0',
+  },
+  {
+    id: '02',
+    stepLabel: 'Step 02',
+    title: 'Submit & Refine',
+    description:
+      'Share your initial prototype, slide deck, or business roadmap. Our team collaborates directly with you to sharpen your value proposition.',
+    image:
+      '/submit$refine.jpeg',
+    tiltClass: 'lg:rotate-[-2deg] lg:-translate-y-1 hover:rotate-0',
+  },
+  {
+    id: '03',
+    stepLabel: 'Step 03',
+    title: 'Evaluation',
+    description:
+      'Our industry mentors and technical advisors thoroughly evaluate market feasibility, scalability, and execution strategy.',
+    image:
+      '/Evaluation.jpeg',
+    tiltClass: 'rotate-0 lg:-translate-y-2 hover:rotate-0',
+  },
+  {
+    id: '04',
+    stepLabel: 'Step 04',
+    title: 'Support & Invest',
+    description:
+      'Receive early-stage funding, direct hands-on mentorship, tech infrastructure, and investor introductions to build fast.',
+    image:
+      '/support&innovation.jpeg',
+    tiltClass: 'lg:rotate-[2deg] lg:-translate-y-1 hover:rotate-0',
+  },
+  {
+    id: '05',
+    stepLabel: 'Step 05',
+    title: 'Grow & Scale',
+    description:
+      'Scale your venture into a category-defining company with global market access, enterprise partners, and follow-on rounds.',
+    image:
+      'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=80',
+    tiltClass: 'lg:rotate-[5deg] lg:translate-y-2 hover:rotate-0',
+  },
+];
 
 export default function HowItWorks() {
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+
   return (
-    <section className="relative w-full bg-[#eae4e0] overflow-hidden py-0 md:py-0">
+    <section className="relative w-full bg-[#f8fbff] pt-10 pb-6 sm:pt-12 sm:pb-8 px-4 sm:px-6 lg:px-8 overflow-visible [touch-action:pan-y]">
+      {/* Background Soft Glows */}
+      <div className="absolute top-1/4 -left-32 w-[500px] h-[500px] bg-blue-300/25 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-1/3 -right-32 w-[500px] h-[500px] bg-amber-200/25 rounded-full blur-3xl pointer-events-none" />
 
-      {/* ========================================================================= */}
-      {/* 1. DESKTOP / TABLET VIEW (md and up) - Full Bleed Background Overlay      */}
-      {/* ========================================================================= */}
-      <div className="hidden md:flex relative w-full min-h-[700px] lg:min-h-screen items-center">
-        {/* Background Image */}
-        <div className="absolute inset-0 w-full h-full z-0">
-          <div className="absolute top-0 inset-x-0 h-28 bg-gradient-to-b from-[#eae4e0] via-[#eae4e0]/60 to-transparent pointer-events-none z-10" />
-          <img
-            src="/staircase-journey.png"
-            alt="5 Steps Journey"
-            className="w-full h-full object-cover object-center"
-          />
-        </div>
-
-        {/* Bottom Seamless Fade to WhatWeOffer (Pure White) */}
-        <div className="absolute bottom-0 inset-x-0 h-28 md:h-36 bg-gradient-to-b from-transparent via-white/70 to-white pointer-events-none z-10" />
-
-        {/* Text Overlay */}
-        <div className="relative z-10 w-full max-w-7xl mx-auto px-8 lg:px-16">
-          <div className="max-w-md lg:max-w-xl space-y-4">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#0a1222] border border-white/10 shadow-sm">
-              <span className="text-amber-400 text-xs">✨</span>
-              <span className="text-xs font-bold tracking-widest text-white uppercase">
-                HOW IT WORKS
-              </span>
-            </div>
-
-            <h2 className="text-3xl sm:text-5xl lg:text-6xl font-black text-slate-950 tracking-tight leading-[1.12]">
-              5 Simple Steps <br />
-              to Real Impact
-            </h2>
-
-            <p className="text-sm sm:text-base lg:text-lg text-slate-800 font-medium leading-relaxed max-w-md lg:max-w-lg">
-              From your idea to a thriving venture — we&apos;re with you at every step of the journey.
-            </p>
-          </div>
-        </div>
-      </div>
-
-      {/* ========================================================================= */}
-      {/* 2. MOBILE VIEW (< md) - Stacked Top Text + Full Visible Graphic           */}
-      {/* ========================================================================= */}
-      <div className="flex md:hidden flex-col gap-6 px-5 w-full">
-        {/* Mobile Header Text */}
-        <div className="max-w-md lg:max-w-xl space-y-4">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#0a1222] border border-white/10 shadow-sm">
-            <span className="text-amber-400 text-xs">✨</span>
-            <span className="text-xs font-bold tracking-widest text-white uppercase">
-              HOW IT WORKS
-            </span>
+      {/* Centered Header Section */}
+      <ScrollReveal>
+        <div className="relative z-10 w-full max-w-5xl mx-auto text-center flex flex-col items-center justify-center mb-16 px-4">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-slate-900 text-amber-400 text-xs font-bold tracking-widest uppercase mb-4 shadow-md border border-slate-800">
+            <span>★</span> HOW IT WORKS
           </div>
 
-          <h2 className="text-3xl sm:text-5xl lg:text-6xl font-black text-slate-950 tracking-tight leading-[1.12]">
-            5 Simple Steps <br />
-            to Real Impact
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-[#0f172a] leading-tight tracking-tight whitespace-normal sm:whitespace-nowrap">
+            A <span className="text-[#2563eb]">proven</span>{' '}
+            <span className="text-[#f59e0b]">process</span> from idea to{' '}
+            <span className="text-[#2563eb]">launch</span>
+            <span className="text-[#f59e0b]">.</span>
           </h2>
 
-          <p className="text-sm sm:text-base lg:text-lg text-slate-800 font-medium leading-relaxed max-w-md lg:max-w-lg">
-            From your idea to a thriving venture — we&apos;re with you at every step of the journey.
+          <p className="mt-4 text-slate-600 text-base sm:text-lg md:text-xl font-medium leading-relaxed max-w-2xl mx-auto">
+            Five clear steps. No surprises. You see real progress every single day.
           </p>
         </div>
+      </ScrollReveal>
 
-        {/* Mobile Full Illustration (Zero Cropping - 100% Complete View) */}
-        <div className="relative w-full aspect-[16/11] rounded-2xl overflow-hidden shadow-[0_8px_30px_rgba(0,0,0,0.06)] border border-slate-100 bg-slate-50">
-          <img
-            src="/staircase-journey.png"
-            alt="5 Steps Journey"
-            className="w-full h-full object-contain object-center"
-          />
-        </div>
+      {/* Larger Step Cards Row */}
+      <div
+        className="relative z-10 max-w-[1500px] mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 xl:gap-7 items-start justify-items-center px-2 py-4 [touch-action:pan-y]"
+        style={{ WebkitOverflowScrolling: 'touch' }}
+      >
+        {stepsData.map((step, idx) => (
+          <ScrollReveal key={step.id} delay={0.1 * idx} className="w-full flex justify-center self-start">
+            {/* Fixed slot so the layout never expands */}
+            <div
+              className="relative w-full max-w-[270px] xl:max-w-[285px] h-[330px] sm:h-[350px] flex-shrink-0"
+              onMouseEnter={() => setHoveredIndex(idx)}
+              onMouseLeave={() => setHoveredIndex(null)}
+            >
+              {/* Floating Card Overlay */}
+              <div
+                className={`absolute top-0 left-0 w-full bg-white rounded-[30px] sm:rounded-[36px] p-4 sm:p-[18px] border transition-all duration-500 cursor-pointer overflow-hidden will-change-transform transform-gpu ${hoveredIndex === idx
+                    ? 'border-slate-900 shadow-[0_24px_48px_-12px_rgba(15,23,42,0.18)] -translate-y-2.5 z-40 scale-[1.03]'
+                    : `border-slate-200/80 shadow-[0_16px_40px_rgba(0,0,0,0.06)] z-10 ${step.tiltClass}`
+                  }`}
+                style={{ transform: 'translateZ(0)' }}
+              >
+                {/* Image Container - Enlarged view */}
+                <div className="w-full aspect-[4/4.2] rounded-[22px] sm:rounded-[26px] overflow-hidden relative bg-slate-900 shadow-inner">
+                  <img
+                    src={step.image}
+                    alt={step.title}
+                    className={`w-full h-full object-cover transition-all duration-500 ease-out ${hoveredIndex === idx ? 'grayscale-0 contrast-100' : 'grayscale contrast-125'
+                      }`}
+                  />
+
+                  {/* Initial Bottom Overlay (Picture 2 style) */}
+                  <div className={`absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/25 to-transparent transition-opacity duration-300 delay-75 ${hoveredIndex === idx ? 'opacity-0' : 'opacity-100'
+                    }`} />
+
+                  <div className={`absolute bottom-4 left-4 right-4 text-white transition-opacity duration-300 delay-75 pointer-events-none ${hoveredIndex === idx ? 'opacity-0' : 'opacity-100'
+                    }`}>
+                    <div className="inline-block bg-slate-800/90 backdrop-blur-sm text-slate-100 px-3 py-1 rounded-lg text-[10px] font-medium tracking-wider mb-1.5 shadow-md">
+                      {step.stepLabel}
+                    </div>
+                    <div className="text-base sm:text-lg font-serif font-bold truncate">
+                      {step.title}
+                    </div>
+                  </div>
+
+                  {/* Picture 3 Top-Left Badge (Reveals on hover) */}
+                  <div className={`absolute top-3 left-3 transition-opacity duration-300 delay-75 ${hoveredIndex === idx ? 'opacity-100' : 'opacity-0'
+                    }`}>
+                    <span className="inline-block bg-slate-900 text-white px-3 py-1 rounded-lg text-[10px] font-medium tracking-wider shadow-md">
+                      {step.stepLabel}
+                    </span>
+                  </div>
+                </div>
+
+                {/* Hover Detailed Content (Picture 3 style) */}
+                <div className={`transition-all duration-500 transform-gpu will-change-transform ease-out overflow-hidden px-3 text-left delay-75 ${hoveredIndex === idx ? 'max-h-64 opacity-100 pt-2 pb-2' : 'max-h-0 opacity-0'
+                  }`}>
+                  <h3 className="text-xl font-serif font-bold text-slate-900 tracking-tight">
+                    {step.title}
+                  </h3>
+
+                  <p className="text-slate-600 text-[13px] leading-relaxed mt-2 pb-1">
+                    {step.description}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </ScrollReveal>
+        ))}
       </div>
-
     </section>
   );
 }
